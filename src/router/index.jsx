@@ -4,6 +4,7 @@ import ConnectPage from "../pages/connect";
 import HomePage from "../pages/home";
 import Login from "../pages/login";
 import FeedPage from "../pages/feed";
+import VotePage from "../pages/voting";
 import Header from "../components/header";
 
 const Router = () => {
@@ -43,6 +44,15 @@ const Router = () => {
 						<>
 							<Header title={"Feed"} />
 							<FeedPage />
+						</>
+					}
+				/>
+				<Route
+					path="/voting"
+					element={
+						<>
+							<Header title={"Voting"} />
+							<VotePage />
 						</>
 					}
 				/>

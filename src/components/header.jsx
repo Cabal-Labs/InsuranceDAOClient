@@ -23,9 +23,9 @@ export default function Header() {
 						Login
 					</Text>
 				</Link>
-				<Link to="/feed" className="flex flex-col justify-end">
+				<Link to="/voting" className="flex flex-col justify-end">
 					<Text textStyle={"link"} fontSize={"xl"}>
-						Feed
+						Voting
 					</Text>
 				</Link>
 			</nav>

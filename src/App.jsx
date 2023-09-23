@@ -4,6 +4,7 @@ import { Box, ChakraProvider } from "@chakra-ui/react";
 import theme from "./styles/chakraTheme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+
 function App() {
 	const queryClient = new QueryClient();
 	return (
@@ -17,6 +18,7 @@ function App() {
 					</QueryClientProvider>
 				</ChakraProvider>
 			</Box>
+			
 		</>
 	);
 }

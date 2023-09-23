@@ -73,6 +73,8 @@ const theme = extendTheme({
 				secondary: {
 					bg: "blue.500",
 					color: "white",
+					fontSize: "l",
+					width: "100%",
 					_hover: {
 						bg: "blue.600",
 					},
