@@ -11,13 +11,13 @@ function CustomDropdown({ name, price, content }) {
   return (
     <Box>
       <Button onClick={toggleDropdown} variant="outline">
-        <Flex justify="space-between">
+        <Flex justify="space-between" width="100%" align="center">
             <Text>{name}</Text>
-            <Box>
+            <Box width="15%" display="flex" border="1px">
                 <Text>{price}</Text>
-                <img src={isOpen ? "./public/up.png" : "./public/down.svg"} alt="Collapse Icon" width="5%"/>
+                <img src={isOpen ? "./public/up.png" : "./public/down.svg"} alt="Collapse Icon" width="70%"/>
             </Box>
-        </Flex>
+        </Flex> 
       </Button>
       <Collapse in={isOpen}>
         <Box p={4} mt={2} border="1px" borderColor="gray.200" rounded="md">
