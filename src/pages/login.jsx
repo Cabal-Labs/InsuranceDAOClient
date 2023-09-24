@@ -49,7 +49,6 @@ export default function Login() {
   const [medicalProcedure, setMedicalProcedure] = React.useState('')
   const [medicalProcedureCost, setMedicalProcedureCost] = React.useState('')
 
-<<<<<<< HEAD
   const {
     config,
     error: prepareError,
@@ -69,19 +68,6 @@ export default function Login() {
     args: [hospitalName, patientAddress, medicalProcedure, medicalProcedureCost],
   })
   const { data, error, isError, write } = useContractWrite(config)
-=======
-	const onSubmit = (data) => console.log(data);
-	console.log(watch("example")); // watch input value by passing the name of it
-	return (
-		<div className="page">
-			<Box bg="green.900" w={"100%"} maxW={800} className="p-6">
-				<Text textStyle="title">Login</Text>
-				<form
-					onSubmit={handleSubmit(onSubmit)}
-					className={"flex flex-col gap-6"}>
-					{/* register your input into the hook by invoking the "register" function */}
-					<input defaultValue="Example" {...register("example")} />
->>>>>>> refs/remotes/origin/main
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
