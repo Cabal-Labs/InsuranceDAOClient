@@ -1,5 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
-
+import LineChartComponent from "../components/lineChart";
+    
 export default function HomePage() {
     return (
         <Box display="flex" className="page">
@@ -10,7 +11,7 @@ export default function HomePage() {
                     </Text>
                 </Box>
                 <Box bg="black" className="p-6 rounded-lg" marginTop="5%" height= "50%">
-                  <Text color={"white"}>Insert Graph</Text>
+                    <LineChartComponent />
                 </Box>
             </Box>
             <Box flex="1" p={4}>
