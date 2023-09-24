@@ -18,7 +18,9 @@ export default function HomePage() {
                         <>
                         <Text>Patient Address:</Text>
                         <Text>Date:</Text>
-                        <Text></Text>
+                        <Text>Reccomended Price: ($X,000-$Y,000)</Text>
+                        <Text>Voting Link:</Text>
+                        <Text>link</Text>
                         </>
                     }
                 />
