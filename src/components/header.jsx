@@ -20,7 +20,7 @@ export default function Header() {
 				</Link>
 				<Link to="/login" className="flex flex-col justify-end">
 					<Text textStyle={"link"} fontSize={"xl"}>
-						Login
+						File Claim
 					</Text>
 				</Link>
 				<Link to="/voting" className="flex flex-col justify-end">
