@@ -9,9 +9,17 @@ import {
 import { Web3Modal } from "@web3modal/react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { arbitrum, mainnet, polygon, goerli } from "wagmi/chains";
-import { useAccount } from "wagmi";
+import { useAccount, useWalletClient } from "wagmi";
+import {
+  usePrepareContractWrite,
+  useContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
 
+import Treasury from "../contracts/Treasury.json";
+import { ethers } from "ethers";
 import { getAllPolicies } from "../apis/graph";
+
 const chains = [arbitrum, mainnet, polygon, goerli];
 const projectId = "aadfe464fef8ec2fcd82c54ef25ca687";
 
@@ -25,7 +33,10 @@ const ethereumClient = new EthereumClient(wagmiConfig, chains);
 
 export default function ConnectPage() {
   const [locked, setLocked] = useState("pending");
+  const [policyPrices, setPolicyPrices] = useState([]);
   const [policies, setPolicies] = useState([]);
+  const [address, setAddress] = useState(null);
+
   const account = useAccount();
 
   const unlockHandler = (e) => {
@@ -36,11 +47,41 @@ export default function ConnectPage() {
     window.unlockProtocol && window.unlockProtocol.loadCheckoutModal();
   };
 
+  async function getPremium(num) {
+    console.log("yeah");
+
+    console.log("getting num", num);
+    const treasuryContract = new ethers.Contract(
+      Treasury.address,
+      Treasury.abi,
+      walletClient
+    );
+
+    let amnt = await treasuryContract.getPremium(num);
+
+    console.log("premium:", amnt);
+
+    return amnt.toString();
+  }
+
   async function load() {
     let a = await getAllPolicies();
-    console.log(a);
-    setPolicies(a);
+    let edited = [];
+    for (let i = 0; i < a.length; i++) {
+      console.log(a[i]);
+      let premium = await getPremium(a[i].policyNumber);
+
+      let b = {
+        name: a[i].name,
+        cost: premium,
+      };
+      edited.push(b);
+    }
+    console.log(edited);
+    setPolicies(edited);
   }
+
+  ///=================================
 
   useEffect(() => {
     window.addEventListener("unlockProtocol", unlockHandler);
@@ -50,6 +91,12 @@ export default function ConnectPage() {
       window.removeEventListener("unlockProtocol", unlockHandler);
     };
   }, []);
+
+  useEffect(() => {
+    if (account) {
+      setAddress(account.address);
+    }
+  }, [account]);
 
   const connectedBox = (
     <Box
@@ -73,7 +120,7 @@ export default function ConnectPage() {
 
   const notConnectedBox = (
     <Box
-      bg="red.300"
+      bg="blue.300"
       w={"100%"}
       maxW={800}
       p={6}
@@ -101,7 +148,7 @@ export default function ConnectPage() {
         justifyContent: "center",
       }}
     >
-      {account ? connectedBox : notConnectedBox}
+      {address ? connectedBox : notConnectedBox}
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </div>
   );

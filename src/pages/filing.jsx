@@ -28,7 +28,7 @@ export default function Login() {
       hospitalName,
       medicalProcedure,
       patientAddress,
-      medicalProcedureCost,
+      Number(medicalProcedureCost),
     ],
   });
   const { data, error, isError, write } = useContractWrite(config);
