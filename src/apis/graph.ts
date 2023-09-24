@@ -39,3 +39,29 @@ export async function getAllClaims(id) {
     return null;
   }
 }
+
+export async function getAllPolicies(id) {
+  const query = `query () {
+  policyCreateds {
+    blockNumber
+    blockTimestamp
+    coverage
+    id
+    name
+    policyNumber
+    transactionHash
+  }
+  }`;
+
+  try {
+    // make the request with the string id
+    const result = await client.query(query, {}).toPromise();
+
+    let all = result.data.policyCreateds;
+
+    return all;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
