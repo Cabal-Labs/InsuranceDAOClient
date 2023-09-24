@@ -2,7 +2,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ConnectPage from "../pages/connect";
 import HomePage from "../pages/home";
-import Login from "../pages/login";
+import Login from "../pages/filing";
 import FeedPage from "../pages/feed";
 import VotePage from "../pages/voting";
 import Header from "../components/header";

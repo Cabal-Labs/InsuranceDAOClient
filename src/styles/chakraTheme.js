@@ -30,6 +30,12 @@ const theme = extendTheme({
 			lineHeight: "110%",
 			letterSpacing: "-2%",
 		},
+		h2: {
+			color: "white", 
+			fontSize: "7px", // Adjust font size as needed
+			fontWeight: "semiBold", // Adjust font weight as needed
+			marginBottom: "0.5rem", // Add some bottom margin for spacing
+		},
 		base: {
 			fontFamily: "body",
 			color: "gray.100",
@@ -52,7 +58,7 @@ const theme = extendTheme({
 		subTitle: {
 			fontSize: "28px",
 			fontFamily: "heading",
-			color: "gray.300",
+			color: "white",
 		},
 	},
 	components: {
@@ -62,12 +68,12 @@ const theme = extendTheme({
 			},
 			variants: {
 				primary: {
-					bg: "blue.200",
+					bg: "blue.300",
 					color: "white",
 					borderColor: "white",
-					border: "1px",
+					border: "2px",
 					_hover: {
-						border: "2px",
+						border: "4px",
 					},
 				},
 				secondary: {
