@@ -16,6 +16,8 @@ export default function Login() {
   const [medicalProcedure, setMedicalProcedure] = React.useState("");
   const [medicalProcedureCost, setMedicalProcedureCost] = React.useState("");
 
+  const calculatedValue = (parseFloat(medicalProcedureCost) * 10**18).toString();
+
   const {
     config,
     error: prepareError,
@@ -26,22 +28,17 @@ export default function Login() {
     functionName: "payHospital",
     args: [
       hospitalName,
-      medicalProcedure,
       patientAddress,
-      Number(medicalProcedureCost),
+      medicalProcedure,
     ],
+    value: '1000000000000000',
   });
   const { data, error, isError, write } = useContractWrite(config);
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("here");
-  };
-
+  
   return (
     <div className="page">
       <Box
