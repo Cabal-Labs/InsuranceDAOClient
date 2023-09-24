@@ -20,7 +20,7 @@ export default function Login() {
 					onSubmit={handleSubmit(onSubmit)}
 					className={"flex flex-col gap-6"}>
 					{/* register your input into the hook by invoking the "register" function */}
-					<input defaultValue="test" {...register("example")} />
+					<input defaultValue="Example" {...register("example")} />
 
 					{/* include validation with required or other standard HTML validation rules */}
 					<input {...register("exampleRequired", { required: true })} />

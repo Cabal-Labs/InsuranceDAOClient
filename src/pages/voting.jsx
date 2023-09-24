@@ -1,5 +1,6 @@
 import { ChakraProvider, Box, Text } from "@chakra-ui/react";
-import CustomDropdown from "../components/collapsable";
+import Dropdown from "../components/collapsable";
+import LineChartComponent from "../components/lineChart";
 
 export default function HomePage() {
     return (
@@ -11,7 +12,7 @@ export default function HomePage() {
                     </Text>
                 </Box>
                 <Box>
-                <CustomDropdown
+                <Dropdown
                     name="Chest X-Ray"
                     price="$12.99"
                     content={
@@ -33,7 +34,7 @@ export default function HomePage() {
                     </Text>
                 </Box>
                 <Box bg="black" className="p-6 rounded-lg" marginTop="5%" height= "50%">
-                  <Text color={"white"}>Insert Graph</Text>
+                  <LineChartComponent />
                 </Box>
             </Box>
         </Box>
