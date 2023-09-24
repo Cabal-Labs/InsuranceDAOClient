@@ -42,6 +42,9 @@ import {
   useContractWrite,
   useWaitForTransaction,
 } from 'wagmi'
+import { ethers } from 'ethers'
+
+const { utils } = ethers;
 
 export default function Login() {
   const [hospitalName, setHospitalName] = React.useState('')
@@ -54,29 +57,45 @@ export default function Login() {
     error: prepareError,
     isError: isPrepareError,
   } = usePrepareContractWrite({
-    address: '0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2',
+    address: '0x08c5966e2f4B7c8773B76c9798D10699ac9B321C',
     abi: [
       {
         name: 'payHospital',
         type: 'function',
         stateMutability: 'nonpayable',
-        inputs: [{ internalType: 'uint32', name: '', type: 'uint32' }],
+        inputs: [
+        {
+          "internalType": "string",
+          "name": "hospital_name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "paymentAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_patient_address",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "medicalProcedure",
+          "type": "uint256"
+        }
+      ],
         outputs: [],
       },
     ],
     functionName: 'payHospital',
-    args: [hospitalName, patientAddress, medicalProcedure, medicalProcedureCost],
+    args: [hospitalName, patientAddress, utils.BigNumber.from(medicalProcedure), utils.BigNumber.from(medicalProcedureCost)],
   })
   const { data, error, isError, write } = useContractWrite(config)
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   })
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-	console.log("here")
-  }
 
   return (
 	<div className="page">
