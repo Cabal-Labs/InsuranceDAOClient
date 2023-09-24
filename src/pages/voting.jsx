@@ -6,8 +6,9 @@ const claimsData = [
   {
     name: "Chest X-Ray",
     price: "12.99",
-    address: "0x87652345",
     date: "09/25/2023",
+    patientAddress: "0x87652345",
+    hospitalName: "Carepoint",
     recPriceLow: "1,000",
     recPriceHigh: "4,000",
     votingLink: "https://google.com"
@@ -15,8 +16,8 @@ const claimsData = [
   {
     name: "Colonoscopy",
     price: "3.50",
-    address: "X",
-    date: "X",
+    patientAddress: "X",
+    hospitalName: "X",
     recPriceLow: "X",
     recPriceHigh: "X",
     votingLink: "X"
@@ -24,8 +25,8 @@ const claimsData = [
   {
     name: "Appendectomy",
     price: "7.54",
-    address: "X",
-    date: "X",
+    patientAddress: "X",
+    hospitalName: "X",
     recPriceLow: "X",
     recPriceHigh: "X",
     votingLink: "X"
@@ -46,8 +47,9 @@ export default function HomePage() {
             <Dropdown
               name={claim.name}
               price={claim.price}
-              address={claim.address}
               date={claim.date}
+              patientAddress={claim.patientAddress}
+              hospitalName={claim.hospitalName}
               recPriceLow={claim.recPriceLow}
               recPriceHigh={claim.recPriceHigh}
               votingLink={claim.votingLink}

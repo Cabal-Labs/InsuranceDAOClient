@@ -1,7 +1,7 @@
 import { Box, Button, Collapse, Flex, Text, Link } from "@chakra-ui/react";
 import { useState } from "react";
 
-function CustomDropdown({ name, price, address, date, recPriceLow, recPriceHigh, votingLink }) {
+function CustomDropdown({ name, price, date, patientAddress, hospitalName, recPriceLow, recPriceHigh, votingLink }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -25,8 +25,9 @@ function CustomDropdown({ name, price, address, date, recPriceLow, recPriceHigh,
       </Button>
       <Collapse in={isOpen}>
         <Box p={4} mt={2} border="1px" borderColor="gray.200" rounded="md" bg="blue.300">
-          <Text color="white">Patient Address: {address}</Text>
           <Text color="white">Date: {date}</Text>
+          <Text color="white">Patient Address: {patientAddress}</Text>
+          <Text color="white">Hospital Name: {hospitalName}</Text>
           <Text color="white">Recommended Price: ${recPriceLow}-${recPriceHigh}</Text>
           <Text color="white">Voting Link:</Text>
           <Link href={votingLink} color="white" fontWeight="semiBold" className="underline">{votingLink}</Link>

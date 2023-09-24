@@ -68,12 +68,12 @@ const theme = extendTheme({
 			},
 			variants: {
 				primary: {
-					bg: "blue.200",
+					bg: "blue.300",
 					color: "white",
 					borderColor: "white",
-					border: "1px",
+					border: "2px",
 					_hover: {
-						border: "2px",
+						border: "4px",
 					},
 				},
 				secondary: {
