@@ -82,7 +82,10 @@ export default function Login() {
 	<div className="page">
 	 <Box bg="green.900" w={"100%"} maxW={800} className="p-6">
 	 <Text textStyle="title">File Claim</Text>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => {
+			e.preventDefault()
+			write?.()
+		}}>
           <label htmlFor="hospitalName">Hospital Name</label>
           <input
             id="hospitalName"
@@ -115,18 +118,21 @@ export default function Login() {
             value={medicalProcedureCost}
           />
 		  <br></br>
-          <button disabled={isLoading}>
-            {isLoading ? 'Submitting...' : 'Submit'}
-          </button>
-          {isSuccess && (
-            <div>
-              Successfully submitted claim!
-              <div>
-                <a href={`https://etherscan.io/tx/${transaction.hash}`}>Etherscan</a>
-              </div>
-            </div>
-          )}
-          {error && <div>Error: {error}</div>}
+          <button disabled={!write || isLoading}>
+        	{isLoading ? 'Submitting...' : 'Submit'}
+		  </button>
+		{isSuccess && (
+			<div>
+			Successfully submitted the claim
+			<div>
+				<a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
+			</div>
+			</div>
+		)}
+		{(isPrepareError || isError) && (
+			<div>Error: {(prepareError || error)?.message}</div>
+		)}
+		  
         </form>
       </Box>
 	</div>
