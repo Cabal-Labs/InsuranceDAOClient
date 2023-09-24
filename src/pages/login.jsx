@@ -49,7 +49,6 @@ export default function Login() {
   const [medicalProcedure, setMedicalProcedure] = React.useState('')
   const [medicalProcedureCost, setMedicalProcedureCost] = React.useState('')
 
-<<<<<<< HEAD
   const {
     config,
     error: prepareError,
@@ -69,19 +68,6 @@ export default function Login() {
     args: [hospitalName, patientAddress, medicalProcedure, medicalProcedureCost],
   })
   const { data, error, isError, write } = useContractWrite(config)
-=======
-	const onSubmit = (data) => console.log(data);
-	console.log(watch("example")); // watch input value by passing the name of it
-	return (
-		<div className="page">
-			<Box bg="green.900" w={"100%"} maxW={800} className="p-6">
-				<Text textStyle="title">Login</Text>
-				<form
-					onSubmit={handleSubmit(onSubmit)}
-					className={"flex flex-col gap-6"}>
-					{/* register your input into the hook by invoking the "register" function */}
-					<input defaultValue="Example" {...register("example")} />
->>>>>>> refs/remotes/origin/main
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
@@ -96,7 +82,10 @@ export default function Login() {
 	<div className="page">
 	 <Box bg="green.900" w={"100%"} maxW={800} className="p-6">
 	 <Text textStyle="title">File Claim</Text>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => {
+			e.preventDefault()
+			write?.()
+		}}>
           <label htmlFor="hospitalName">Hospital Name</label>
           <input
             id="hospitalName"
@@ -129,18 +118,21 @@ export default function Login() {
             value={medicalProcedureCost}
           />
 		  <br></br>
-          <button disabled={isLoading}>
-            {isLoading ? 'Submitting...' : 'Submit'}
-          </button>
-          {isSuccess && (
-            <div>
-              Successfully submitted claim!
-              <div>
-                <a href={`https://etherscan.io/tx/${transaction.hash}`}>Etherscan</a>
-              </div>
-            </div>
-          )}
-          {error && <div>Error: {error}</div>}
+          <button disabled={!write || isLoading}>
+        	{isLoading ? 'Submitting...' : 'Submit'}
+		  </button>
+		{isSuccess && (
+			<div>
+			Successfully submitted the claim
+			<div>
+				<a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
+			</div>
+			</div>
+		)}
+		{(isPrepareError || isError) && (
+			<div>Error: {(prepareError || error)?.message}</div>
+		)}
+		  
         </form>
       </Box>
 	</div>
