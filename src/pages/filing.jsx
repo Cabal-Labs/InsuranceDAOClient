@@ -6,6 +6,10 @@ import {
   useWaitForTransaction,
 } from 'wagmi'
 
+import { ethers } from 'ethers'
+
+const { utils } = ethers;
+
 export default function Login() {
   const [hospitalName, setHospitalName] = React.useState('')
   const [patientAddress, setPatientAddress] = React.useState('')
@@ -28,7 +32,7 @@ export default function Login() {
       },
     ],
     functionName: 'payHospital',
-    args: [hospitalName, patientAddress, medicalProcedure, medicalProcedureCost],
+    args: [hospitalName, patientAddress, utils.BigNumber.from(medicalProcedure), utils.BigNumber.from(medicalProcedureCost)],
   })
   const { data, error, isError, write } = useContractWrite(config)
 
